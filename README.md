@@ -1,5 +1,7 @@
 # rpi-cluster
 
+/!\ NEED EDITORIAL WORK /!\
+
 How to launch the cluster on Master/Worker1 and Worker2 (3 RPIs)
 
 Pre-requisites:
