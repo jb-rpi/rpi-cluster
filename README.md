@@ -16,7 +16,9 @@ $sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 In case anything wrong, check:
 
 1/ $ sudo swapoff -a
+
 2/ $ sudo rm -R .kube
+
 3/ $ sudo kubeadm reset
 
 If everything is fine, at the end of the output we have something like:
@@ -28,6 +30,19 @@ kubeadm join 10.0.0.50:6443 --token 7p3ngy.wgdcbk901sy53o3a \
     
  This is the command to run on the 2 other nodes.
  
+ But before.. 
+ 
+ $ mkdir -p ~/.kube
+ $ sudo cp /etc/kubernetes/admin.conf ~/.kube/config
+ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+ 
+ Then use of Flannel:
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+
+ 
+ 
+ 
  Thus, on worker:
  
 $ sudo kubeadm join 10.0.0.50:6443 --token 7p3ngy.wgdcbk901sy53o3a \
@@ -38,5 +53,12 @@ In case of error, check
 1/$sudo kubeadm reset
 
 You can then control that everything is fine with "kubectl get nodes" on the master.
+
+Output here:
+
+NAME      STATUS   ROLES                  AGE     VERSION
+master    Ready    control-plane,master   15m     v1.20.1
+worker1   Ready    <none>                 7m51s   v1.20.1
+worker2   Ready    <none>                 5m13s   v1.20.2
 
 
