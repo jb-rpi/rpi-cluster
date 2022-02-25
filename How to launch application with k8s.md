@@ -5,4 +5,6 @@ Create a yaml file containing the description and launhc it with:
 
 $ kubectl apply -f xxx.yaml.
 
-Here, we have created a dockerized miner (for XMR) and use the xmrig-example.ymal
+An example of configuration file is provided in rpi-cluster/configuration-files
+
+
