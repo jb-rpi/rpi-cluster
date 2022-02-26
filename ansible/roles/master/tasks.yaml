@@ -1,3 +1,5 @@
+# to be adapted soon
+
 - name: Initialize the Kubernetes cluster using kubeadm
   command: kubeadm init --apiserver-advertise-address="{{ node_ip }}" --apiserve
 r-cert-extra-sans="{{ node_ip }}"  --node-name="{{ node_name }}" --pod-network-c
