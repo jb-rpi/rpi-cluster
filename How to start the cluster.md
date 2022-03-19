@@ -9,7 +9,7 @@ The 3 nodes are on a LAN behind a rapsberry acting as wifi-router.
 
 # Master:
 
-$sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+> $sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 In case anything wrong, check:
 
@@ -26,7 +26,7 @@ If everything is fine, at the end of the output we have something like:
 > kubeadm join 10.0.0.50:6443 --token 7p3ngy.wgdcbk901sy53o3a \
     --discovery-token-ca-cert-hash sha256:065ec32af1fd4743bcac89573088a84d5beb076d1b334e9a60ae8cc73ba6a397 "
     
-## Flannel 
+ ## Flannel 
 
 > $ mkdir -p ~/.kube
  
