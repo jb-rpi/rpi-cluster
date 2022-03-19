@@ -1,4 +1,4 @@
-# How to launch the cluster on Master/Worker1 and Worker2 (3 RPIs)
+# How to launch the cluster on Master with 2 workers nodes
 
 ## Pre-requisites:
 Master has 10.0.0.50
@@ -27,23 +27,20 @@ If everything is fine, at the end of the output we have something like:
     --discovery-token-ca-cert-hash sha256:065ec32af1fd4743bcac89573088a84d5beb076d1b334e9a60ae8cc73ba6a397 "
     
 ## Flannel 
- Then use of Flannel:
- 
-> $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-
-# Workers:
- 
- This is the command to run on the 2 other nodes.
- 
- ## Clean-up
 
 > $ mkdir -p ~/.kube
  
 > $ sudo cp /etc/kubernetes/admin.conf ~/.kube/config
  
 > $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+ Then use of Flannel:
  
+> $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+ 
+# Worker
  
 ## Join the Master:
  
