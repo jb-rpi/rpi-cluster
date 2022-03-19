@@ -61,4 +61,12 @@ master    Ready    control-plane,master   15m     v1.20.1
 
 worker1   Ready    <none>                 7m51s   v1.20.1
     
-worker2   Ready    <none>                 5m13s   v1.20.2
+worker2   Ready    <none>                 5m13s   v1.20.
+    
+    
+    
+# Useful k8s command to Monitor:
+    
+> https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+    
+    
