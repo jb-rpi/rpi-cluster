@@ -1,1 +1,26 @@
 # main.yaml
+# to be adapted soon
+
+- name: Initialize the Kubernetes cluster using kubeadm
+  command: kubeadm init --apiserver-advertise-address="{{ node_ip }}" --apiserve
+r-cert-extra-sans="{{ node_ip }}"  --node-name="{{ node_name }}" --pod-network-c
+idr={{ pod_network }}
+
+- name: Setup kubeconfig for pi user
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p /home/pi/.kube
+    - cp -i /etc/kubernetes/admin.conf /home/pi/.kube/config
+    - chown pi:pi /home/pi/.kube/config
+
+- name: Install flannel pod network
+  become: false
+  command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+- name: Generate join command
+  command: kubeadm token create --print-join-command
+  register: join_command
+
+- name: Copy join command to local file
+  become: false
+  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
