@@ -1,0 +1,30 @@
+
+- hosts: workers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+
+    - name: clean k8S with kubeadm reset -f
+      command: kubeadm reset -f
+      args:
+        removes: /etc/kubernetes/admin.conf
+
+    - name: disable swap
+      command: swapoff -a
+      when: ansible_swaptotal_mb > 0
+
+    - name: Delete .kube if it exists
+      file:
+        state: absent
+        path: /home/pi/.kube
+
+    - name: Copy the join command to server location
+      copy: 
+        src: join-command
+        dest: /tmp/join-command.sh 
+        mode: 0777
+
+    - name: Join the node to cluster
+      command: sh /tmp/join-command.sh
+      register: joined_or_not
