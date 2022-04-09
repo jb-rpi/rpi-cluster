@@ -1,0 +1,9 @@
+# pre-requisites: your deployment file located on the master in the corresponding yaml files 
+
+- hosts: master
+  gather_facts: yes
+
+  tasks:
+
+    - name: push docker xmrig
+      command: kubectl apply -f /home/pi/docker-xmrig/xmrig-deployment.yaml
