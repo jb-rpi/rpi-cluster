@@ -10,3 +10,9 @@ https://grafana.com/tutorials/install-grafana-on-raspberry-pi/
 After the installation, we enable the Grafana server. It is now accessible at http://<your ip>:3000
   
   
+# Install Prometheus
+  
+We can follow:
+http://www.d3noob.org/2020/02/installing-prometheus-and-grafana-on.html?m=1
+  
+  
